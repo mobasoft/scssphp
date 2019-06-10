@@ -47,7 +47,7 @@ class Nested extends Formatter
     protected function indentStr()
     {
         $n = $this->depth - 1;
-
+//var_dump($this->depth. ':'.$this->indentLevel);
         return str_repeat($this->indentChar, max($this->indentLevel + $n, 0));
     }
 
@@ -68,9 +68,9 @@ class Nested extends Formatter
 
         $this->write($inner . implode($glue, $block->lines));
 
-        if (! empty($block->children)) {
-            $this->write($this->break);
-        }
+        //if (! empty($block->children)) {
+//            $this->write($this->break);
+        //}
     }
 
     /**
@@ -92,7 +92,7 @@ class Nested extends Formatter
     {
         foreach ($block->children as $i => $child) {
             $this->block($child);
-
+/*
             if ($i < count($block->children) - 1) {
                 $this->write($this->break);
 
@@ -104,6 +104,7 @@ class Nested extends Formatter
                     }
                 }
             }
+*/
         }
     }
 
@@ -112,8 +113,16 @@ class Nested extends Formatter
      */
     protected function block(OutputBlock $block)
     {
+        static $depths;
+        static $downLevel;
+        static $closeBlock;
+
         if ($block->type === 'root') {
-            $this->adjustAllChildren($block);
+            $depths = [ 0 ];
+            $downLevel = '';
+            $closeBlock = '';
+            $this->depth = 0;
+           // $this->adjustAllChildren($block);
         }
 
         if (empty($block->lines) && empty($block->children)) {
@@ -123,16 +132,46 @@ class Nested extends Formatter
         $this->currentBlock = $block;
 
 
-        $this->depth = $block->depth;
+            /*if ($block->depth == 1 && $block->depth == end($depths)) {
+                $downLevel = $this->break;
+            }*/
+            while ($block->depth < end($depths) || ($block->depth == 1 && end($depths) == 1)) {
+                array_pop($depths);
+                $this->depth--;
+                $downLevel = $this->break;
+            }
+        if (! empty($block->lines)) {
+            if ($block->depth > end($depths)) {
+                $this->depth++;
+                $depths[] = $block->depth;
+            }
+        }
 
         if (! empty($block->selectors)) {
+            if ($closeBlock) {
+                $this->write($closeBlock);
+                $closeBlock = '';
+            }
+            if ($downLevel) {
+                $this->write($downLevel);
+                $downLevel = '';
+            }
             $this->blockSelectors($block);
 
             $this->indentLevel++;
         }
 
         if (! empty($block->lines)) {
+            if ($closeBlock) {
+                $this->write($closeBlock);
+                $closeBlock = '';
+            }
+            if ($downLevel) {
+                $this->write($downLevel);
+                $downLevel = '';
+            }
             $this->blockLines($block);
+            $closeBlock = $this->break;
         }
 
         if (! empty($block->children)) {
@@ -143,6 +182,7 @@ class Nested extends Formatter
             $this->indentLevel--;
 
             $this->write($this->close);
+            $closeBlock = $this->break;
         }
 
         if ($block->type === 'root') {
