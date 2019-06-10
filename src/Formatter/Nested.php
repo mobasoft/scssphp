@@ -67,45 +67,6 @@ class Nested extends Formatter
         }
 
         $this->write($inner . implode($glue, $block->lines));
-
-        //if (! empty($block->children)) {
-//            $this->write($this->break);
-        //}
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function blockSelectors(OutputBlock $block)
-    {
-        $inner = $this->indentStr();
-
-        $this->write($inner
-            . implode($this->tagSeparator, $block->selectors)
-            . $this->open . $this->break);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function blockChildren(OutputBlock $block)
-    {
-        foreach ($block->children as $i => $child) {
-            $this->block($child);
-/*
-            if ($i < count($block->children) - 1) {
-                $this->write($this->break);
-
-                if (isset($block->children[$i + 1])) {
-                    $next = $block->children[$i + 1];
-
-                    if ($next->depth === max($block->depth, 1) && $child->depth >= $next->depth) {
-                        $this->write($this->break);
-                    }
-                }
-            }
-*/
-        }
     }
 
     /**
@@ -122,7 +83,6 @@ class Nested extends Formatter
             $downLevel = '';
             $closeBlock = '';
             $this->depth = 0;
-           // $this->adjustAllChildren($block);
         }
 
         if (empty($block->lines) && empty($block->children)) {
@@ -132,20 +92,22 @@ class Nested extends Formatter
         $this->currentBlock = $block;
 
 
-            /*if ($block->depth == 1 && $block->depth == end($depths)) {
-                $downLevel = $this->break;
-            }*/
-            while ($block->depth < end($depths) || ($block->depth == 1 && end($depths) == 1)) {
-                array_pop($depths);
-                $this->depth--;
-                $downLevel = $this->break;
-            }
+        // increase/decrease depth
+        /*if ($block->depth == 1 && $block->depth == end($depths)) {
+            $downLevel = $this->break;
+        }*/
+        while ($block->depth < end($depths) || ($block->depth == 1 && end($depths) == 1)) {
+            array_pop($depths);
+            $this->depth--;
+            $downLevel = $this->break;
+        }
         if (! empty($block->lines)) {
             if ($block->depth > end($depths)) {
                 $this->depth++;
                 $depths[] = $block->depth;
             }
         }
+
 
         if (! empty($block->selectors)) {
             if ($closeBlock) {
@@ -190,52 +152,4 @@ class Nested extends Formatter
         }
     }
 
-    /**
-     * Adjust the depths of all children, depth first
-     *
-     * @param \ScssPhp\ScssPhp\Formatter\OutputBlock $block
-     */
-    private function adjustAllChildren(OutputBlock $block)
-    {
-        // flatten empty nested blocks
-        $children = [];
-
-        foreach ($block->children as $i => $child) {
-            if (empty($child->lines) && empty($child->children)) {
-                if (isset($block->children[$i + 1])) {
-                    $block->children[$i + 1]->depth = $child->depth;
-                }
-
-                continue;
-            }
-
-            $children[] = $child;
-        }
-
-        $count = count($children);
-
-        for ($i = 0; $i < $count; $i++) {
-            $depth = $children[$i]->depth;
-            $j = $i + 1;
-
-            if (isset($children[$j]) && $depth < $children[$j]->depth) {
-                $childDepth = $children[$j]->depth;
-
-                for (; $j < $count; $j++) {
-                    if ($depth < $children[$j]->depth && $childDepth >= $children[$j]->depth) {
-                        $children[$j]->depth = $depth + 1;
-                    }
-                }
-            }
-        }
-
-        $block->children = $children;
-
-        // make relative to parent
-        foreach ($block->children as $child) {
-            $this->adjustAllChildren($child);
-
-            $child->depth = $child->depth - $block->depth;
-        }
-    }
 }
