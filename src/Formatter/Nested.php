@@ -76,18 +76,25 @@ class Nested extends Formatter
         static $depths;
         static $downLevel;
         static $closeBlock;
+        static $previousEmpty;
 
         if ($block->type === 'root') {
             $depths = [ 0 ];
             $downLevel = '';
             $closeBlock = '';
             $this->depth = 0;
+            $previousEmpty = false;
         }
 
         while ($block->depth < end($depths) || ($block->depth == 1 && end($depths) == 1)) {
             array_pop($depths);
             $this->depth--;
-            $downLevel = $this->break;
+            if (!$this->depth && $block->depth <= 1) {
+                $downLevel = $this->break;
+            }
+            if (empty($block->lines) && empty($block->children)) {
+                $previousEmpty = true;
+            }
         }
 
         if (empty($block->lines) && empty($block->children)) {
@@ -96,12 +103,16 @@ class Nested extends Formatter
 
         $this->currentBlock = $block;
 
-        if (! empty($block->lines) || (! empty($block->children) && $this->depth < 1)) {
-            if ($block->depth > end($depths)) {
-                $this->depth++;
-                $depths[] = $block->depth;
+        if (! $previousEmpty || $this->depth < 1) {
+            if (! empty($block->lines) || (! empty($block->children) && $this->depth < 1)) {
+                if ($block->depth > end($depths)) {
+                    $this->depth++;
+                    $depths[] = $block->depth;
+                }
             }
         }
+
+        $previousEmpty = false;
 
         if (! empty($block->selectors)) {
             if ($closeBlock) {
