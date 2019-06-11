@@ -47,7 +47,6 @@ class Nested extends Formatter
     protected function indentStr()
     {
         $n = $this->depth - 1;
-//var_dump($this->depth. ':'.$this->indentLevel);
         return str_repeat($this->indentChar, max($this->indentLevel + $n, 0));
     }
 
@@ -85,29 +84,24 @@ class Nested extends Formatter
             $this->depth = 0;
         }
 
+        while ($block->depth < end($depths) || ($block->depth == 1 && end($depths) == 1)) {
+            array_pop($depths);
+            $this->depth--;
+            $downLevel = $this->break;
+        }
+
         if (empty($block->lines) && empty($block->children)) {
             return;
         }
 
         $this->currentBlock = $block;
 
-
-        // increase/decrease depth
-        /*if ($block->depth == 1 && $block->depth == end($depths)) {
-            $downLevel = $this->break;
-        }*/
-        while ($block->depth < end($depths) || ($block->depth == 1 && end($depths) == 1)) {
-            array_pop($depths);
-            $this->depth--;
-            $downLevel = $this->break;
-        }
-        if (! empty($block->lines)) {
+        if (! empty($block->lines) || (! empty($block->children) && $this->depth < 1)) {
             if ($block->depth > end($depths)) {
                 $this->depth++;
                 $depths[] = $block->depth;
             }
         }
-
 
         if (! empty($block->selectors)) {
             if ($closeBlock) {
@@ -137,7 +131,16 @@ class Nested extends Formatter
         }
 
         if (! empty($block->children)) {
-            $this->blockChildren($block);
+            if ($this->depth>0) {
+                array_pop($depths);
+                $this->depth--;
+                $this->blockChildren($block);
+                $this->depth++;
+                $depths[] = $block->depth;
+            }
+            else {
+                $this->blockChildren($block);
+            }
         }
 
         if (! empty($block->selectors)) {
@@ -145,6 +148,14 @@ class Nested extends Formatter
 
             $this->write($this->close);
             $closeBlock = $this->break;
+
+            if ($this->depth > 1 && ! empty($block->children)) {
+                array_pop($depths);
+                $this->depth--;
+                if (!$this->depth) {
+                    $downLevel = $this->break;
+                }
+            }
         }
 
         if ($block->type === 'root') {
