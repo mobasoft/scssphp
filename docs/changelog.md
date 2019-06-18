@@ -9,6 +9,8 @@ title: Changelog
   * Moving development to ScssPhp organization, https://github.com/scssphp/
   * Online documentation can be found at http://scssphp.github.com/scssphp/
   * Renamed namespace from Leafo to ScssPhp
+* **0.8.4** -- June 18, 2019
+  * This is the final tag on the leafo/scssphp repo; PHP requirements downgraded to 5.4+ for this repo/package only.
   * Support parent selector and selector functions (Cerdic)
   * Improve {% raw %}and{% endraw %}/{% raw %}or{% endraw %} compatibility (robocoder)
   * Backslash newline fix (Netmosfera, Cerdic)
