@@ -5,6 +5,15 @@ title: Changelog
 
 ## Changelog
 
+* **1.0.2** -- July 6, 2019
+  * Version: actually bump the version number
+* **1.0.1** -- July 6, 2019
+  * Fix iteration on map (alexsaalberg049 , Cerdic)
+  * More compatibility with reference implementation (Cerdic)
+  * Cache: bump {% raw %}CACHE_VERSION{% endraw %} (Cerdic)
+  * {% raw %}bin/pscss{% endraw %} requires php 5.6+ (robocder)
+  * travis updates and improved tests (Cerdic)
+  * Nested formatted improvements (Cerdic)
 * **1.0.0** -- June 4, 2019
   * Moving development to ScssPhp organization, https://github.com/scssphp/
   * Online documentation can be found at http://scssphp.github.com/scssphp/
