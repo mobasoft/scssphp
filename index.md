@@ -20,7 +20,7 @@ line tool for running the compiler from a terminal/shell or script.
 ## Installing
 
 You can always download the latest version here:
-<a href="{{ site.repo_url }}/archive/v{{ site.current_version }}.tar.gz" id="download-link">scssphp-{{ site.current_version }}.tar.gz</a>
+<a href="{{ site.repo_url }}/archive/{{ site.current_version }}.tar.gz" id="download-link">scssphp-{{ site.current_version }}.tar.gz</a>
 
 You can also find the latest source online:
 <{{ site.repo_url }}/>
