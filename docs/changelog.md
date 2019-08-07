@@ -5,6 +5,12 @@ title: Changelog
 
 ## Changelog
 
+* **1.0.3** -- Aug 7, 2019
+  * {% raw %}@at-root{% endraw %}, {% raw %}@import{% endraw %}, and {% raw %}url(//host/image.png){% endraw %} fixes (Cerdic)
+  * join operator with interpolated values vs vars or static values (julienmru, Cerdic)
+  * Implemented passing Arguments to Content Blocks (jensniedling, Cerdic)
+  * Support whitespaces inside :not() (schliesser)
+  * Compile non-roots comments also (fabsn182, Cerdic)
 * **1.0.2** -- July 6, 2019
   * Version: actually bump the version number
 * **1.0.1** -- July 6, 2019
