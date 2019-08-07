@@ -93,7 +93,7 @@ div.parameter-name-scope {
 
 @media screen and (min-width:0\0) {
   .test {
-    color: #000; } }
+    color: black; } }
 
 div {
   content: "div";

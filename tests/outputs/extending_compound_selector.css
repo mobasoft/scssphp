@@ -4,7 +4,7 @@
   color: blue; }
 
 a, a:link, a:visited, a:active, a:hover {
-  color: #fff; }
+  color: white; }
 
 .nest a.some-class, .nest a:link.some-class, .nest a:visited.some-class, .nest a:active.some-class, .nest a:hover.some-class {
   color: #ccc; }

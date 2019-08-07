@@ -76,7 +76,7 @@ a.badge {
   border-radius: 5px; }
 
 .element {
-  border: 2px solid #000; }
+  border: 2px solid black; }
 
 div > p > strong, div > h1 > strong {
   color: red; }

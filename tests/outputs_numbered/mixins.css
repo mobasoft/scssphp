@@ -133,7 +133,7 @@ div.parameter-name-scope {
 @media screen and (min-width:0\0) {
 /* line 186, inputs/mixins.scss */
   .test {
-    color: #000; } }
+    color: black; } }
 
 /* line 197, inputs/mixins.scss */
 div {

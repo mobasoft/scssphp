@@ -1,5 +1,5 @@
 error, pre seriousError, span seriousError, other, hello {
-  border: 1px #f00;
+  border: 1px red;
   background-color: #fdd; }
 
 pre seriousError, span seriousError {
@@ -117,7 +117,7 @@ body .to-extend, body .test {
 .navbar .navbar-brand, .navbar .navbar-brand:hover {
   font-weight: bold;
   text-shadow: none;
-  color: #fff; }
+  color: white; }
 
 .foo__bar#test, input {
   background: red; }

@@ -1,6 +1,6 @@
 /* line 2, inputs/extends.scss */
 error, pre seriousError, span seriousError, other, hello {
-  border: 1px #f00;
+  border: 1px red;
   background-color: #fdd; }
 
 /* line 7, inputs/extends.scss */
@@ -189,7 +189,7 @@ body .to-extend, body .test {
 .navbar .navbar-brand, .navbar .navbar-brand:hover {
   font-weight: bold;
   text-shadow: none;
-  color: #fff; }
+  color: white; }
 
 /* line 247, inputs/extends.scss */
 /* line 253, inputs/extends.scss */
