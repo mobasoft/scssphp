@@ -201,9 +201,10 @@ class Colors
         }
 
         if ($a < 1) {
-            if (!$a && !$r && !$g && !$b) {
-                return 'transparent';
-            }
+            # specific case we dont' revert according to spec
+            #if (!$a && !$r && !$g && !$b) {
+            #    return 'transparent';
+            #}
             return null;
         }
 
