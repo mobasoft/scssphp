@@ -179,6 +179,11 @@ class Compiler
         $this->stderr = fopen('php://stderr', 'w');
     }
 
+    /**
+     * Get compiler options
+     *
+     * @return array
+     */
     public function getCompileOptions()
     {
         $options = [
@@ -195,8 +200,9 @@ class Compiler
     }
 
     /**
-     * Set an alternartive error output stream, for testing purpose only
-     * @param $handle
+     * Set an alternative error output stream, for testing purpose only
+     *
+     * @param resource $handle
      */
     public function setErrorOuput($handle)
     {
@@ -855,6 +861,7 @@ class Compiler
                 $wrapped->children     = $media->children;
 
                 $media->children = [[Type::T_BLOCK, $wrapped]];
+
                 if (isset($this->lineNumberStyle)) {
                     $annotation = $this->makeOutputBlock(Type::T_COMMENT);
                     $annotation->depth = 0;
@@ -2114,6 +2121,7 @@ class Compiler
             foreach ($rawPath[2] as $path) {
                 if ($path[0] !== Type::T_STRING) {
                     $this->appendRootDirective('@import ' . $this->compileValue($rawPath) . ';', $out);
+
                     return false;
                 }
             }
@@ -2602,8 +2610,8 @@ class Compiler
                 }
 
                 $storeEnv = $this->storeEnv;
-
                 $varsUsing = [];
+
                 if (isset($argUsing) && isset($argContent)) {
                     // Get the arguments provided for the content with the names provided in the "using" argument list
                     $this->storeEnv = $this->env;
@@ -4951,6 +4959,7 @@ class Compiler
 
         $value = [Type::T_KEYWORD, $value];
         $color = $this->coerceColor($value);
+
         if ($color) {
             return $color;
         }
@@ -5086,6 +5095,7 @@ class Compiler
                         return $this->coerceColor($color);
                     }
                 }
+
                 return null;
 
             case Type::T_KEYWORD:
@@ -5097,10 +5107,11 @@ class Compiler
                 // hexa color?
                 if (preg_match('/^#([0-9a-f]+)$/i', $name, $m)) {
                     $nofValues = strlen($m[1]);
+
                     if (in_array($nofValues, [3, 4, 6, 8])) {
                         $nbChannels = 3;
-                        $color = [];
-                        $num = hexdec($m[1]);
+                        $color      = [];
+                        $num        = hexdec($m[1]);
 
                         switch ($nofValues) {
                             case 4:
@@ -5136,6 +5147,7 @@ class Compiler
                         }
 
                         array_unshift($color, Type::T_COLOR);
+
                         return $color;
                     }
                 }
@@ -6215,6 +6227,7 @@ class Compiler
 
         if (! is_null($key)) {
             $key = $this->compileStringContent($this->coerceString($key));
+
             for ($i = count($map[1]) - 1; $i >= 0; $i--) {
                 if ($key === $this->compileStringContent($this->coerceString($map[1][$i]))) {
                     return $map[2][$i];
@@ -6646,6 +6659,7 @@ class Compiler
     protected function libInspect($args)
     {
         $value = $args[0];
+
         if ($value === static::$null) {
             $value = [Type::T_KEYWORD, 'null'];
         }
