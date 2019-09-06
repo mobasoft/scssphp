@@ -5,6 +5,14 @@ title: Changelog
 
 ## Changelog
 
+* **1.0.4** -- Sep 6, 2019
+  * {% raw %}border-radius{% endraw %} shorthand support (alex-shul, Cerdic)
+  * allow {% raw %}zip(){% endraw %} function to use all types as arguments (devdot, Cerdic)
+  * {% raw %}@each{% endraw %} forcing unwanted type conversion (devdot)
+  * {% raw %}rgb(){% endraw %} and colour compatibility improvements (Cerdic)
+  * {% raw %}str-splice{% endraw %} broken in php 7.4
+  * composer and travis configuration updates
+  * remove obsolete {% raw %}Base64VLQEncoder{% endraw %} class
 * **1.0.3** -- Aug 7, 2019
   * {% raw %}@at-root{% endraw %}, {% raw %}@import{% endraw %}, and {% raw %}url(//host/image.png){% endraw %} fixes (Cerdic)
   * join operator with interpolated values vs vars or static values (julienmru, Cerdic)
