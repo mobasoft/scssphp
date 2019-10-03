@@ -5,6 +5,11 @@ title: Changelog
 
 ## Changelog
 
+* **1.0.5** -- Oct 3, 2019
+  * interpolation fixes (Cerdic)
+  * phpunit test updates (stof)
+  * undefined sourceIndex (connerbw, robocoder)
+  * using is_null(), is_dir(), is_file() for consistency (robocoder)
 * **1.0.4** -- Sep 6, 2019
   * {% raw %}border-radius{% endraw %} shorthand support (alex-shul, Cerdic)
   * allow {% raw %}zip(){% endraw %} function to use all types as arguments (devdot, Cerdic)
