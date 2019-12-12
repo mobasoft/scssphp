@@ -5,6 +5,14 @@ title: Changelog
 
 ## Changelog
 
+* **1.0.6** -- Dec 12, 2019
+  * Many sass-spec compatibility fixes (Cerdic)
+  * Discriminate shorthands vs real divisions in border-radius property (joakipe, Cerdic)
+  * Base64VLQ - 32-bit overflow fixes from Closure implementation (remicollet, robocoder)
+  * Formatter for nested properties removes semicolon (Mythos07, Cerdic)
+  * Variables scope issues (jducro, Cerdic)
+  * Using {% raw %}@extend{% endraw %} creates invalid output with nested classnames (bmbrands, Cerdic)
+  * Fixed sourceMapGenerator bug if semicolons are stripped. (ugogon)
 * **1.0.5** -- Oct 3, 2019
   * interpolation fixes (Cerdic)
   * phpunit test updates (stof)
