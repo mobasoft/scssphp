@@ -13,9 +13,6 @@ a directory that you specify.
 Create a file, like `style.php`:
 
 {% highlight php startinline=true %}
-require_once "scssphp/scss.inc.php";
-require_once "scssphp/example/Server.php";
-
 use ScssPhp\ScssPhp\Server;
 
 $directory = "stylesheets";
