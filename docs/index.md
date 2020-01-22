@@ -374,4 +374,4 @@ local file inclusion (LFI) attack.
 
 ### Server Example
 
-An example `Server` class is described here: <a href="{{ site.baseurl }}/docs/example.html">{{ site.baseurl }}/docs/example.html</a>.
+An example `Server` class is described here: <a href="{{ site.baseurl }}/docs/server.html">{{ site.baseurl }}/docs/server.html</a>.

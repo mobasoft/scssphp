@@ -6,9 +6,9 @@ title: Example
 ## Server Example
 
 If you just want to start serving compiled `scss` files as quick as possible
-then start here.  **scssphp** comes with an easy-to-use example that demonstrates
-how to automatically compile `scss` files and serve them from a directory
-that you specify.
+then start here. The **scssphp/server** project provides an easy-to-use example
+that demonstrates how to automatically compile `scss` files and serve them from
+a directory that you specify.
 
 Create a file, like `style.php`:
 
