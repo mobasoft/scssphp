@@ -5,6 +5,10 @@ title: Changelog
 
 ## Changelog
 
+* **1.0.7** -- Jan 31, 2020
+  * Fix problem with Bootstrap 4.4 / Responsive containers (nvindice, Cerdic)
+  * Fix issue with pseudoelement selectors order in {% raw %}@extend{% endraw %}'ed elements (CrazyManLabs, Cerdic)
+  * {% raw %}example/Server.php{% endraw %} moved to https://github.com/scssphp/server
 * **1.0.6** -- Dec 12, 2019
   * Many sass-spec compatibility fixes (Cerdic)
   * Discriminate shorthands vs real divisions in border-radius property (joakipe, Cerdic)
