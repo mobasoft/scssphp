@@ -5,6 +5,13 @@ title: Changelog
 
 ## Changelog
 
+* **1.0.8** -- Feb 20, 2020
+  * Import of valid scss files fails silently (oyejorge, Cerdic)
+  * Undefined $libName (enricobono, robocoder)
+  * Fix division and modulo per sass-spec (Cerdic)
+  * Fix expressions in at directives (Cerdic)
+  * Introduce support for custom properties (Cerdic)
+  * Function compatibility issues with functions (abs, ceil, floor, max, min, percentage, random, round), units, and conversions. (Cerdic)
 * **1.0.7** -- Jan 31, 2020
   * Fix problem with Bootstrap 4.4 / Responsive containers (nvindice, Cerdic)
   * Fix issue with pseudoelement selectors order in {% raw %}@extend{% endraw %}'ed elements (CrazyManLabs, Cerdic)
