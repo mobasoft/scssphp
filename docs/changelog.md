@@ -5,6 +5,13 @@ title: Changelog
 
 ## Changelog
 
+* **1.0.9** -- Apr 1, 2020
+  * Fix parsing issues around {% raw %}#, +, -, --{% endraw %} (Cerdic)
+  * Fix {% raw %}@import{% endraw %} compatibility (Cerdic)
+  * Add vendor-prefixed {% raw %}scssphp-glob(){% endraw %} function (havutcuoglu, robocoder)
+  * Remove PHP version and mbstring.func_overload checks (KryukovDS, robocoder)
+  * Fix multiple issues with Bootstrap 4.4.1 and master (fuzegit, Cerdic)
+  * Fix variables interpolation bug (Seonic, Cerdic)
 * **1.0.8** -- Feb 20, 2020
   * Import of valid scss files fails silently (oyejorge, Cerdic)
   * Undefined $libName (enricobono, robocoder)
