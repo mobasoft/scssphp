@@ -5,6 +5,12 @@ title: Changelog
 
 ## Changelog
 
+* **1.1.0** -- Apr 21, 2020
+  * Fix the handling of call traces for exceptions of native functions (stof)
+  * Add named call stack entries for imports (stof)
+  * Fix leaks in the call stack (stof)
+  * Qualify function calls when the compiler can optimize them (stof)
+  * Remove deprecated Parser::to() and Parser::show() methods (robocoder)
 * **1.0.9** -- Apr 1, 2020
   * Fix parsing issues around {% raw %}#, +, -, --{% endraw %} (Cerdic)
   * Fix {% raw %}@import{% endraw %} compatibility (Cerdic)
