@@ -8,7 +8,7 @@ title: Changelog
 * **1.1.1** -- Jun 4, 2020
   * Fix extend and class concatenation (develth, Cerdic)
   * Fix arguments selector issue (stempora, Cerdic)
-  * Fix regression when members units are not not normalizable (jszczypk, Cerdic)
+  * Fix regression when members units are not normalizable (jszczypk, Cerdic)
   * Remove box.json.dist from .gitattributes (reedy)
   * 32-bit fixes for Base64VLQ {% raw %}encode(){% endraw %} and {% raw %}unique-id(){% endraw %} (remicollet, robocoder)
   * Fix index of map within list of maps (stempora, robocoder)
